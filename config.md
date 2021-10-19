@@ -8,6 +8,7 @@ The website_* must be defined for the RSS to work
 @def website_url   = "lvaverka.gitlab.io"
 
 @def author = "Lauren Vaverka"
+@def prepath = "lvaverka.gitlab.io"
 
 @def mintoclevel = 2
 @def maxtoclevel = 3
