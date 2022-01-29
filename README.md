@@ -1,3 +1,3 @@
-# Lauren Vaverka Blog :bulb:
+# Future Posts
 
-About stuff.
+- [ ] Submit feed to [Julia Bloggers](https://www.juliabloggers.com/julia-bloggers-submit-feed/)
