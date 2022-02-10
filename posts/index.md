@@ -1,5 +1,7 @@
 +++
+using Dates
 title = "Blog | Jacob Vaverka"
+date  = today()
 +++
 
 @@posts

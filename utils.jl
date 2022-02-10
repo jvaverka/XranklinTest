@@ -1,5 +1,5 @@
 using Dates
-using Franklin
+import Franklin
 using Weave
 
 function hfun_bar(vname)
@@ -9,7 +9,7 @@ end
 
 function hfun_m1fill(vname)
     var = vname[1]
-    return Franklin.pagevar("index", var)
+    return pagevar("index", var)
 end
 
 function lx_baz(com, _)
@@ -28,20 +28,20 @@ end
 
 function write_posts(rpaths)::String
     sort_posts!(rpaths)
-    curyear = Dates.year(Franklin.pagevar(rpaths[1], :date))
+    curyear = Dates.year(pagevar(rpaths[1], :date))
     io = IOBuffer()
     write(io, "<h3 class=\"posts\">$curyear</h3>")
     write(io, "<ul class=\"posts\">")
     for rp in rpaths
-        year = Dates.year(Franklin.pagevar(rp, :date))
+        year = Dates.year(pagevar(rp, :date))
         if year < curyear
             write(io, "<h3 class=\"posts\">$year</h3>")
             curyear = year
         end
-        title = Franklin.pagevar(rp, :title)
-        descr = Franklin.pagevar(rp, :descr)
+        title = pagevar(rp, :title)
+        descr = pagevar(rp, :descr)
         descr === nothing && error("no description found on page $rp")
-        pubdate = Dates.format(Date(Franklin.pagevar(rp, :date)), "U d")
+        pubdate = Dates.format(Date(pagevar(rp, :date)), "U d")
         path = joinpath(splitpath(rp)[1:2]...)
         write(
             io,
@@ -62,7 +62,7 @@ end
 
 function sort_posts!(rpaths)
     sorter(p) = begin
-        pvd = Franklin.pagevar(p, :date)
+        pvd = pagevar(p, :date)
         if isnothing(pvd)
             return Date(Dates.unix2datetime(stat(p * ".md").ctime))
         end

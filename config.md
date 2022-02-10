@@ -1,6 +1,9 @@
 +++
 author = "Jacob Vaverka"
 title = "Jacob Vaverka"
+
+prepath = "XranklinTest"
+
 mintoclevel = 2
 ignore = ["node_modules/", "archive/"]
 generate_rss = true
