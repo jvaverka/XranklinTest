@@ -1,5 +1,5 @@
 [deps]
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
-PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
-Weave = "44d3d7a6-8a23-5bf8-98c5-b353f8df5ec9"
+# PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
+# Weave = "44d3d7a6-8a23-5bf8-98c5-b353f8df5ec9"
 Xranklin = "558449b0-171e-4e1f-900f-d076a5ddf486"
