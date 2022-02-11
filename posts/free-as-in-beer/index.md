@@ -1,4 +1,6 @@
 +++
+using Dates
+
 title = "Free As In Beer"
 descr = "My take on Linux and who it's for."
 rss = "My take on Linux and who it's for."
@@ -140,7 +142,7 @@ Linux (and Open-source software in general) is a bountiful garden. Dig it.
 
 Share this with a curious soul or anyone asking about Linux.
 
-### References
+<!-- ### References -->
 
 [^free]: [Gratis versus libre](https://en.wikipedia.org/wiki/Gratis_versus_libre)
 [^linux]: [Jamie Zawinski](https://www.brainyquote.com/quotes/jamie_zawinski_320496)
