@@ -85,7 +85,7 @@ function hfun_alltags()
     #   id (e.g. "the_tag")
     #   name (e.g. "The Tag")
     #   locs (list of rpaths with this tag)
-    all_tags   = cur_gc().tags
+    all_tags   = get_all_tags()
     tag_prefix = getgvar(:tags_prefix, "tag")
 
     io = IOBuffer()
