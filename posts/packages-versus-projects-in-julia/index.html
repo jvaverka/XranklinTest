@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="stylesheet" href="/XranklinTest/css/frank.css">
+ 
+  <link rel="stylesheet" href="/XranklinTest/css/frank.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="/XranklinTest/assets/favicon.png">
+   <title>Packages Versus Projects in Julia</title> 
+</head>
+<body>
+    
+<header>
+  <div class="blog-name">
+    <a href="/XranklinTest/">
+      <span style="color:var(--color-yellow)">
+        <i class="fa fa-lightbulb-o" alt=""></i>
+      </span>
+      jvaverka
+    </a>
+  </div>
+<nav>
+  <ul>
+    <li><a href="/XranklinTest/about/">About</a></li>
+    <li><a href="/XranklinTest/posts/">Blog</a></li>
+    <li><a href="/XranklinTest/feed.xml"><i class="fa fa-rss"></i></a></li>
+  </ul>
+  
+  <i class="fa fa-ellipsis-v" id="menu-icon"></i>
+</nav>
+</header>
+ 
+
+<div class="franklin-content" >
+  <h2 id="packages_versus_projects_in_julia" ><a href="#packages_versus_projects_in_julia"> Packages Versus Projects in Julia</a></h2><div class="toc"><ol><li><a href="#packages_versus_projects_in_julia"> Packages Versus Projects in Julia</a><ol><li><a href="#pkg.jl"> Pkg.jl</a></li><li><a href="#what_is_a_package?"> What is a Package?</a></li><li><a href="#what_is_a_project?"> What is a Project?</a></li></ol></li></ol></div><h3 id="pkg.jl" ><a href="#pkg.jl"> Pkg.jl</a></h3><p>One of Julia's greatest strengths is its package manager, <code>Pkg.jl</code>. My goal
+here is to give new Julia users some helpful tips to get the most out of
+<code>Pkg.jl</code> right off the bat. To dive deeper, please check out the <a href="https://pkgdocs.julialang.org/v1/">official
+documentation</a>.</p>
+<h3 id="what_is_a_package?" ><a href="#what_is_a_package?"> What is a Package?</a></h3><p>A package is a code base that performs some function. I.e., a package does a
+job, does it well, and nothing more. It is modular.</p>
+<p>When multiple things need to be done, we sensibly organize the appropriate code
+into separate packages. Furthermore, we give these separate packages separate
+names so that we can understand what job they do well.</p>
+<p>Say you want to work with Hyper Text Markup Language (HTML). <code>HTTP.jl</code> can help
+send requests and read responses.</p>
+<p>Say you want to work with JavaScript Object Notation (JSON). <code>JSON3.jl</code> can
+help read and write data in this format.</p>
+<p>Say you want to fetch random XKCD comic (there is no meaning). <code>XKCD.jl</code> can
+deliver comics to you. The beautiful thing is, that it does so by using
+<code>HTTP.jl</code> in combination with <code>JSON3.jl</code>.</p>
+<p>Packages are the building blocks of the Julia ecosystem. There are many great
+packages out there, and the ease of creating, distributing, and composing
+packages allows the ecosystem to rapidly grow.</p>
+<p>Those interested in building and sharing their own Julia package should
+leverage <a href="https://invenia.github.io/PkgTemplates.jl/stable/">PkgTemplates.jl</a>
+to save time and minimize common mistakes.</p>
+<h3 id="what_is_a_project?" ><a href="#what_is_a_project?"> What is a Project?</a></h3><p>A project is what you create to do stuff.</p>
+<p>Slightly more formally, a project is any Julia code base with its own
+environment. In general, it is always a good idea to create an new environment
+for new projects. This will minimize the chances of package conflicts. Luckily,
+creating a new project with a dedicated environment is easy to do. We'll
+quickly walk through the steps to create a new project named <code>ImportantWork</code>.</p>
+<p>After you have fired up a Julia REPL, indicate that we'll be using the package
+manager (we'll focus only on the most idiomatic way of doing this for now, but
+there is a <code>Pkg</code> REPL mode accessible with <code>]</code> detailed in the official docs).</p>
+<pre><code class="julia-repl">julia&gt; using Pkg</code></pre>
+<p>Now to create our project.</p>
+<pre><code class="julia-repl">julia&gt; Pkg.generate(&quot;ImportantWork&quot;)</code></pre>
+<p>The output looks something like this:</p>
+<pre><code class="text">  Generating  project ImportantWork:
+    ImportantWork/Project.toml
+    ImportantWork/src/ImportantWork.jl
+Dict&lbrace;String, Base.UUID&rbrace; with 1 entry:
+  &quot;ImportantWork&quot; =&gt; UUID(&quot;4b610261-c434-4966-b823-52987c24b398&quot;)</code></pre>
+<p>The Julia package manager just generated:</p>
+<ul>
+<li>a directory, <code>ImportantWork</code> ⇒ where everything for the project lives</li>
+<li>a subdirectory, <code>ImportantWork/src</code> ⇒ for building our code base</li>
+<li>a file, <code>ImportantWork/src/ImportantWork.jl</code> ⇒ a module (think <code>main</code>)</li>
+<li>a file, <code>ImportantWork/Project.toml</code> ⇒ for describing the environment</li>
+<li>a UUID we won't worry about for now</li>
+</ul>
+<p>Let's step into our new project with <code>cd</code>.</p>
+<pre><code class="julia-repl">julia&gt; cd(&quot;ImportantWork&quot;)</code></pre>
+<p>And check out <code>Project.toml</code>.</p>
+<pre><code class="julia-repl">julia&gt; edit(&quot;Project.toml&quot;)</code></pre>
+<p>The file contains some basic information about the project's environment.</p>
+<pre><code class="text">name = &quot;ImportantWork&quot;
+uuid = &quot;4b610261-c434-4966-b823-52987c24b398&quot;
+authors = [&quot;Your Name &lt;you@example.com&gt;&quot;]
+version = &quot;0.1.0&quot;</code></pre>
+<p>To begin working with this new environment, simply activate it.</p>
+<pre><code class="julia-repl">julia&gt; Pkg.activate(&quot;.&quot;)  # the . here means 'this directory'</code></pre>
+<p>Now we can continue to the important project work. To do so, we'll need the
+important <code>XKCD.jl</code> package. So let's add it to the project.</p>
+<pre><code class="julia-repl">julia&gt; Pkg.add(&quot;XKCD&quot;)</code></pre>
+<pre><code class="text">Updating registry at `~/.julia/registries/General`
+   Resolving package versions...
+    Updating `~/Repos/ImportantWork/Project.toml`
+  [4bc7fa8b] + XKCD v1.0.1
+    Updating `~/Repos/ImportantWork/Manifest.toml`
+  [cd3eb016] + HTTP v0.9.17
+  [83e8ac13] + IniFile v0.5.0
+  [0f8b85d8] + JSON3 v1.9.2
+  [739be429] + MbedTLS v1.0.3
+  [69de0a69] + Parsers v2.2.0
+  ...
+  [8dfed614] + Test
+  [cf7118a7] + UUIDs
+  [4ec0a83e] + Unicode
+  [c8ffd9c3] + MbedTLS_jll
+Precompiling project...
+  1 dependency successfully precompiled in 1 seconds (9 already precompiled)</code></pre>
+<p>The <code>Project.toml</code> can again tell us what changed. There are 2 new lines.</p>
+<pre><code class="text">[deps]
+XKCD = &quot;4bc7fa8b-4ef2-4643-8c8b-cef036f85839&quot;</code></pre>
+<p>Indicating that our project has a new dependency.</p>
+<p>We are now free to use the package in our project.</p>
+<pre><code class="julia-repl">julia&gt; edit(&quot;src/ImportantWork.jl&quot;)</code></pre>
+<p>Paste the following code in the file. Save and quit.</p>
+<pre><code class="julia">module ImportantWork
+
+using XKCD
+
+export meaning_of_life
+export life_online
+
+meaning_of_life() = XKCD.Comic(42)
+life_online() = XKCD.Comic(256)
+
+end # module</code></pre>
+<p>Finally, we can get the answers we seek. Furthermore, if we are sure to include
+the <code>Project.toml</code> then we can share our important work with others. Then they
+too can get the answers.</p>
+<pre><code class="julia-repl">julia&gt; using ImportantWork
+julia&gt; meaning_of_life()</code></pre>
+<img src="./geico.jpg" alt="geico"><pre><code class="julia-repl">julia&gt; life_online()</code></pre>
+<img src="./online_communities.png" alt="online-communities">
+  
+
+
+  
+    
+      <div class="back-to-top">
+        <span><a href="#" title="Back to Top"><i class="fa fa-chevron-up"></i></a></span>
+      </div>
+    
+  
+  <div class="page-foot">
+    <div class="copyright">
+      
+      <span><i class="fa fa-creative-commons"></i> 2022 <a href="/XranklinTest/">Jacob Vaverka</a></span>
+      <span><a rel="license" href="/XranklinTest/about/#license">License</a></span>
+      <span><a href="/XranklinTest/about/#privacy_policy">Privacy Policy</a></span>
+    </div>
+    <div class="copyright">
+      <span>Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a></span>
+    </div>
+  </div>
+
+
+</div>
+
+    </div>
+    
+     <script src="/XranklinTest/libs/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();hljs.configure({tabReplace: '    '});</script>
+ 
+    </div>
+  </body>
+</html>
