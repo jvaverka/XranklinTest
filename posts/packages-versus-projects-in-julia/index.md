@@ -1,9 +1,14 @@
 +++
+using Dates
+
 title = "Packages Versus Projects in Julia"
-descr = "The Julia ecosystem has Packages & Projects. This short guide attempts to help beginners get started with both."
-rss = "The Julia ecosystem has Packages & Projects. This short guide attempts to help beginners get started with both."
+descr = """
+  The Julia ecosystem has Packages & Projects.
+  This short guide attempts to help beginners get started with both.
+  """
+rss   = descr
+
 date = Date(2022, 1, 22)
-hascode = true
 tags = ["julia", "code"]
 +++
 

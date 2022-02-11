@@ -15,10 +15,10 @@ rss_full_content = true
 ignore = [
   "archive/",
   # "posts/free-as-in-beer/",
-  "posts/my-julia-story/",
-  "posts/packages-versus-projects-in-julia/"
+  # "posts/my-julia-story/",
+  # "posts/packages-versus-projects-in-julia/"
 ]
 
-fn_title = "" # see _layout/page_foot, manual title
+fn_title = "<h2>Notes</h2>"
 
 +++

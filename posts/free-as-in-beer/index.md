@@ -3,9 +3,9 @@ using Dates
 
 title = "Free As In Beer"
 descr = "My take on Linux and who it's for."
-rss = "My take on Linux and who it's for."
+rss   = descr
+
 date = Date(2022, 1, 16)
-hascode = true
 tags = ["life", "linux"]
 +++
 

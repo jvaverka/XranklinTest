@@ -1,9 +1,13 @@
 +++
+using Dates
+
 title = "My Julia Story"
-descr = "The path I traveled through academia and industry that lead me to Julia."
-rss = "The path I traveled through academia and industry that lead me to Julia."
+descr = """
+  The path I traveled through academia and industry that lead me to Julia.
+  """
+rss   = descr
+
 date = Date(2021, 12, 18)
-hascode = true
 tags = ["julia", "life"]
 +++
 
