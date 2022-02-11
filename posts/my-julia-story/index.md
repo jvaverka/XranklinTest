@@ -7,7 +7,7 @@ hascode = true
 tags = ["julia", "life"]
 +++
 
-{{ posttags }}
+<!-- {{ posttags }} -->
 
 ## My Julia Story
 

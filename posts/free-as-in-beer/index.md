@@ -7,7 +7,7 @@ hascode = true
 tags = ["life", "linux"]
 +++
 
-{{ posttags }}
+<!-- {{ posttags }} -->
 
 ## Free As In Beer
 

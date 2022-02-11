@@ -11,7 +11,7 @@ website_title = title
 website_descr = "Where I write about math, code, and more."
 website_url   = "https://jvaverka.github.io"
 rss_full_content = true
-+++
 
-\newcommand{\R}{\mathbb R}
-\newcommand{\scal}[1]{\langle #1 \rangle}
+ignore = ["archive/", "posts/"]
+
++++

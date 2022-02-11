@@ -8,10 +8,10 @@ date  = today()
 
 ## Tags
 
-{{ alltags }}
+<!-- {{ alltags }} -->
 
 ## Posts
 
-{{ allposts }}
+<!-- {{ allposts }} -->
 
 @@ <!-- posts -->
