@@ -11,7 +11,7 @@ date = Date(2021, 12, 18)
 tags = ["julia", "life"]
 +++
 
-<!-- {{ posttags }} -->
+{{ posttags }}
 
 ## My Julia Story
 

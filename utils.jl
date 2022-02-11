@@ -108,11 +108,16 @@ using Dates
 #     return String(take!(io))
 # end
 #
+
+# NOTE: this is now an internal function; you could overwrite it with your own
+# stuff but let's wait a bit for now
+
 # function hfun_taglist()
 #     tag = Franklin.locvar(:fd_tag)::String
 #     rpaths = Franklin.globvar("fd_tag_pages")[tag]
 #     return write_posts(rpaths)
 # end
+
 #
 # function hfun_weave2html(document)
 #     f_name = tempname(pwd()) * ".html"
@@ -132,22 +137,37 @@ using Dates
 #     return final
 # end
 #
-# Franklin.@delay function hfun_posttags()
-#     pagetags = Franklin.globvar("fd_page_tags")
-#     pagetags === nothing && return ""
-#     io = IOBuffer()
-#     tags = sort(collect(pagetags[splitext(Franklin.locvar("fd_rpath"))[1]]))
-#     write(io, """<div class="page-tag"><i class="fa fa-tag"></i>""")
-#     for tag in tags[1:(end - 1)]
-#         t = replace(tag, "_" => " ")
-#         write(io, """<a href="/tag/$tag/">$t</a>, """)
-#     end
-#     tag = tags[end]
-#     t = replace(tag, "_" => " ")
-#     write(io, """<a href="/tag/$tag/">$t</a></div>""")
-#     return String(take!(io))
-# end
-#
+
+function hfun_posttags()
+    tags = get_page_tags()
+    base = globvar(:tags_prefix)
+    return """<div class="page-tag"><i class="fa fa-tag"></i>""" *
+        join((
+            """
+            <span class="tag">
+              <a href="/$base/$id/">$name</a>
+            </span>
+            """
+            for (id, name) in tags),
+            """<span class="separator">•</span>"""
+        ) *
+        """</div>"""
+
+    # pagetags = Franklin.globvar("fd_page_tags")
+    # pagetags === nothing && return ""
+    # io = IOBuffer()
+    # tags = sort(collect(pagetags[splitext(Franklin.locvar("fd_rpath"))[1]]))
+    # write(io, """<div class="page-tag"><i class="fa fa-tag"></i>""")
+    # for tag in tags[1:(end - 1)]
+    #     t = replace(tag, "_" => " ")
+    #     write(io, """<a href="/tag/$tag/">$t</a>, """)
+    # end
+    # tag = tags[end]
+    # t = replace(tag, "_" => " ")
+    # write(io, """<a href="/tag/$tag/">$t</a></div>""")
+    # return String(take!(io))
+end
+
 
 function hfun_socialicons()
     """

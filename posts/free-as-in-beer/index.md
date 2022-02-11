@@ -9,7 +9,7 @@ date = Date(2022, 1, 16)
 tags = ["life", "linux"]
 +++
 
-<!-- {{ posttags }} -->
+{{ posttags }}
 
 ## Free As In Beer
 

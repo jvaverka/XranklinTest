@@ -12,7 +12,7 @@ date = Date(2022, 1, 22)
 tags = ["julia", "code"]
 +++
 
-<!-- {{ posttags }} -->
+{{ posttags }}
 
 ## Packages Versus Projects in Julia
 
